@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 ml-0 mr-0">
+            {% include "base_system/side_bar.html" %}
+        </div>
+        <div class="col-md-7 ml-0 mr-0 mt-1">
+            {% include "base_system/temperature.html" %}
+            {% include "base_system/axis.html" %}
+            {% include "base_system/message.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}

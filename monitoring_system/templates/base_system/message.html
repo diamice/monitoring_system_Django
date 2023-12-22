@@ -1,0 +1,58 @@
+<script>
+    function submitForm() {
+        document.getElementById('my_form').submit();
+    }
+</script>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mb-0 ">
+            <form method="get" action="{% url 'base_system:logic' %}" id="my_form">
+                <div class="btn-group d-flex flex-fill" role="group">
+                    <label for="filter" class="btn btn-secondary">Группировать по:</label>
+                    <button type="submit"
+                            class="btn btn-primary {% if request.GET.filter == 'important' %}active{% endif %}"
+                            name="filter" value="important">Важные
+                    </button>
+                    <input type="date"
+                           style="width: auto; max-width: 100%; padding: 0.25rem 0.5rem; font-size: 0.875rem;"
+                           class="form-control form-control-sm btn btn-primary {% if request.GET.filter == 'date' %}active{% endif %}"
+                           name="date_filter"
+                           onchange="submitForm()">
+                    </button>
+                    <button type="submit"
+                            class="btn btn-primary {% if request.GET.filter == 'execution_error' %}active{% endif %}"
+                            name="filter" value="execution_error">Ошибка выполнения
+                    </button>
+                    <button type="submit" class="btn btn-primary {% if request.GET.filter == 'all' %}active{% endif %}"
+                            name="filter" value="all">Все сообщения
+                    </button>
+                </div>
+            </form>
+
+            <table class="table  table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Тип сообщения</th>
+                    <th scope="col">Приоритет</th>
+                    <th scope="col">Код</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Дата и время</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for message in message_list %}
+                <tr>
+                    <th scope="row">{{ message.1 }}</th>
+                    <td>{{ message.2 }}</td>
+                    <td>{{ message.3 }}</td>
+                    <td>{{ message.4 }}</td>
+                    <td>{{ message.5|date:"d E Y H:i:s" }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

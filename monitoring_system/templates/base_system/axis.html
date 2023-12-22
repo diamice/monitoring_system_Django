@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mb-0 ml-0 mr-0">
+            <h5 class="title" style="text-align: center">Готовность приводов</h5>
+            <table class="table table-striped table-bordered border-1">
+                <thead>
+                <tr>
+                    <th scope="col" >Ось</th>
+                    <th scope="col" >Статус готовности</th>
+                    <th scope="col" >Дата и время</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for axi in axis_list %}
+                <tr>
+                    <th scope="row">{{ axi.1 }}</th>
+                    <td>{{ axi.2 }}</td>
+                    <td>{{ axi.3 }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-7 mb-0 ml-0 mr-0">
+            <img src="data:image/png;base64,{{ graph}}" class="img-fluid" alt="График">
+        </div>
+    </div>
+</div>

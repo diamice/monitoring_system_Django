@@ -1,0 +1,58 @@
+{% load static %}
+
+<div class="card w-100 border-0">
+    <div class="card-body d-flex flex-column justify-content-between ">
+        <div>
+            <img src="{% static 'images/logo.png' %}" class="card-img-top mt-3 mb-5" alt="Логотип">
+            <form class="w-100">
+                <label for="machineType" class="form-label">Тип станка:</label>
+                <select class="form-select mb-3" id="machineType" aria-label="Выберите тип станка">
+                    {% for machine_type in machine_types %}
+                    <option value="option1">{{ machine_type }}</option>
+                    {% endfor %}
+                </select>
+                <label for="machineName" class="form-label mt-3">Наименование станка:</label>
+                <select class="form-select mb-3" id="machineName" aria-label="Выберите наименование станка">
+                    {% for machine_name in machine_names %}
+                    <option value="option1">{{ machine_name }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="card w-100 border-4">
+    <div class="card-body d-flex flex-column justify-content-between ">
+        <div>
+            <img src="{% static 'images/stanok.jpg' %}" class="card-img-top mx-auto d-block mt-2 mb-3" alt="Логотип" style="max-width: 100%; height: auto;">
+            <hr>
+            <div class="text-center">
+                <label for="machineType" class="form-label">Mazak MultiTasker X7-2000</label>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-success btn-width">X</button>
+            <button type="button" class="btn btn-success btn-width">Y</button>
+            <button type="button" class="btn btn-success btn-width">Z</button>
+            <button type="button" class="btn btn-success btn-width">A</button>
+            <button type="button" class="btn btn-success btn-width">С</button>
+            <button type="button" class="btn btn-primary btn-width-longer" id="modeButton">Mode: Auto</button>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#modeButton").on("click", function () {
+            var currentMode = $(this).text().trim();
+
+            if (currentMode === "Mode: Auto") {
+                $(this).text("Mode: MDI");
+            } else {
+                $(this).text("Mode: Auto");
+            }
+        });
+    });
+</script>
